@@ -1,34 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Eat-Da-Burger">
-    <meta name="author" content="Megan Murphy">
-    <link rel="icon" href="assets/img/burger.png">
+<div class="jumbotron jumbotron-fluid">
+    <div class="container  text-left text-bottom">
+        <container class="jumbotron-burger">
+            <div class="burger-time-bun burger-time-top"></div>
+            <div class="burger-time-div">
+                <h1 class="display-4">Eat Da Burger!</h1>
+            </div>
+            <div class="burger-time-bun burger-time-bottom"></div>
+            <p class="lead" style= "color:black">NOM NOM NOM!</p>
+        </container>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <section class="undevoured-burgers col-12 col-md-4">
+            <h2>Burgers to eat:</h2>
+        {{!-- pulls from the burger-block partial.  puts burger here if devoured=false --}}
+            <ul class="undevoured-burgers-list">
+                {{#each burgers}}
+                {{#unless devoured}}
+                {{> burgers/burger-block devoured=0}}
+                {{/unless}}
+                {{/each}}
+            </ul>
+            <div class="bun-bottom undevoured-burgers-bottom"></div>
+        </section>
 
-    <title>Eat-Da-Burger App</title>
+        <section class="add-burger-section col-12 col-md-4 text-center">
+            <h2>Add a Burger</h2>
+            <form class="create-form">
 
-     <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Custom styles for this template -->
-    <link href="assets/css/burger_style.css" rel="stylesheet">
-  </head>
-  <body>
-      <div>
+                <div class="form-group burger-add-div">
+                    <input type="text" id="burger-add-input" name="name">
+                </div>
 
-      {{{ body }}}
+                <button type="submit">Add Burger</button>
+            </form>
+            <div class="bun-bottom add-burger-bottom"></div>
+        </section>
 
-      </div>
-      <hr>
-      <!-- /container -->
-      <footer class=" center footer">
-        <div class="container">
-          <p> © Eat-Da-Burger 2020 NOM NOM!</p>
-        </div>
-      </footer>
-  </body>
-</html>
+        <section class="devoured-burgers col-12 col-md-4">
+            <h2>Burgers eaten:</h2>
+            <ul class="devoured-burgers-list">
+                {{!-- burger put here if devoured= true --}}
+                {{#each burgers}}
+                {{#if devoured}}
+                <li>
+                    {{burger_name}}
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+            <div class="bun-bottom devoured-burgers-bottom">
+
+            </div>
+        </section>
+    </div>
+</div>
+    <footer>
+    <div class="footer-copyright text-center py-3 fixed-bottom bg-white border-top">
+    </div>
+</footer>
